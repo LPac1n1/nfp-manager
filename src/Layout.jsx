@@ -1,8 +1,8 @@
 function Layout({ children }) {
   return (
     <>
-      <div className="w-screen h-screen bg-neutral-800 text-neutral-100">
-        <div className="max-w-[1440px] mx-auto p-8">{children}</div>
+      <div className="w-screen h-screen bg-neutral-900 text-neutral-100 overflow-hidden">
+        <div className="container mx-auto px-4 py-8">{children}</div>
       </div>
     </>
   );
