@@ -45,61 +45,59 @@ function Donations() {
           <ImportSpreadsheet />
         </div>
 
-        <Section className="w-full !p-4">
-          <div className="py-4">
-            <table className="w-full text-left overflow-x-auto table-fixed">
-              <thead className="text-neutral-300 border-b border-neutral-800">
-                <tr>
-                  <th className="w-[40%] pb-3 pl-4">Nome</th>
-                  <th className="w-[15%] pb-3">CPF</th>
-                  <th className="w-[15%] pb-3">Demanda</th>
-                  <th className="w-[15%] pb-3">Valor a ser pago</th>
-                  <th className="w-[15%] pb-3">Foi pago?</th>
+        <Section className="w-full !p-0">
+          <table className="w-full text-left overflow-x-auto table-fixed6">
+            <thead className="border-b border-neutral-800">
+              <tr className="">
+                <th className="w-[40%] text-sm font-medium pl-8 py-4">NOME</th>
+                <th className="w-[15%] text-sm font-medium py-4">CPF</th>
+                <th className="w-[15%] text-sm font-medium py-4">DEMANDA</th>
+                <th className="w-[15%] text-sm font-medium py-4">VALOR</th>
+                <th className="w-[15%] text-sm font-medium pr-8 py-4">
+                  STATUS
+                </th>
+              </tr>
+            </thead>
+
+            <tbody className="text-neutral-300">
+              {users.map((user, index) => (
+                <tr
+                  key={index}
+                  className="bg-neutral-900 border-b border-neutral-800 last:border-b-0 hover:bg-neutral-700/50 transition-colors"
+                >
+                  <td className="py-4 px-8 font-medium">{user.name}</td>
+                  <td className="py-4">{user.cpf}</td>
+                  <td className="py-4">{user.demand}</td>
+                  <td className="py-4">R${user.totalForPayment},00</td>
+                  <td className="w-max py-4 pr-4 text-white">
+                    <div className="w-full flex rounded-lg">
+                      <button
+                        onClick={() => togglePaid(index, true)}
+                        className={`w-full px-4 py-2 rounded-l-lg cursor-pointer ${
+                          user.wasPaid
+                            ? "border border-emerald-500 bg-emerald-700 text-white"
+                            : "border border-neutral-600/60 bg-transparent text-neutral-400"
+                        }`}
+                      >
+                        Sim
+                      </button>
+
+                      <button
+                        onClick={() => togglePaid(index, false)}
+                        className={`w-full px-4 py-2 rounded-r-lg cursor-pointer ${
+                          !user.wasPaid
+                            ? "border border-rose-500 bg-rose-700 text-white"
+                            : " border border-neutral-600/60 bg-transparent text-neutral-400"
+                        }`}
+                      >
+                        Não
+                      </button>
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-
-              <tbody className="text-neutral-300">
-                {users.map((user, index) => (
-                  <tr
-                    key={index}
-                    className="border-b border-neutral-800 last:border-b-0 hover:bg-neutral-800/50 transition-colors"
-                  >
-                    <td className="py-4 px-4 font-medium text-neutral-100">
-                      {user.name}
-                    </td>
-                    <td className="py-4">{user.cpf}</td>
-                    <td className="py-4">{user.demand}</td>
-                    <td className="py-4">R${user.totalForPayment},00</td>
-                    <td className="w-max py-4 pr-4 text-white">
-                      <div className="w-full flex rounded-lg">
-                        <button
-                          onClick={() => togglePaid(index, true)}
-                          className={`w-full px-4 py-2 rounded-l-lg cursor-pointer ${
-                            user.wasPaid
-                              ? "border border-emerald-500 bg-emerald-700 text-white"
-                              : "border border-neutral-600/60 bg-transparent text-neutral-400"
-                          }`}
-                        >
-                          Sim
-                        </button>
-
-                        <button
-                          onClick={() => togglePaid(index, false)}
-                          className={`w-full px-4 py-2 rounded-r-lg cursor-pointer ${
-                            !user.wasPaid
-                              ? "border border-rose-500 bg-rose-700 text-white"
-                              : " border border-neutral-600/60 bg-transparent text-neutral-400"
-                          }`}
-                        >
-                          Não
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </Section>
       </div>
     </>
