@@ -23,7 +23,7 @@ const Dropwdown = ({ options, label, onSelect }) => {
   };
 
   return (
-    <div className="relative inline-block w-full max-w-xs" ref={dropdownRef}>
+    <div className="relative inline-block w-full" ref={dropdownRef}>
       <label className="block text-sm font-medium ml-2 mb-2">{label}</label>
 
       <button
